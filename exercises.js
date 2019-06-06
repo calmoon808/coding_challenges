@@ -25,8 +25,7 @@ function LetterCapitalize(str){
     for(var i = 0, n = arr.length; i < n; i++){
         arr[i] = arr[i][0].toUpperCase() + arr[i].slice(1);
     }
-    arr = arr.join(' ');
-    return arr;
+    return arr.join(' '); 
 }
 
 // Function rangeRover(arr)
@@ -50,29 +49,45 @@ function rangeRover(arr){
 // Function missingLetter(str)
 // The function will find the missing letter passed in the parameter and return it.  If all letters are present in the string, the return will be undefined.  For example missingLetter("abce") should return "d", missingLetter("bcd") should return undefined.
 function missingLetter(str){
-    var alphabet = 'abcdefghijklmnopqrstuvwxyz';
-    for(var i = 0, n = alphabet.length; i < n; i++){
-        if(alphabet.charAt(i) === str.charAt(0)){
-            alphabet = alphabet.slice(i);
-            i = 1;
-        }
-        if(alphabet.charAt(i) === str.charAt(str.length - 1)){
-            alphabet = alphabet.replace(alphabet.slice(i), '');
-        }
-
-    }
     var missing = '';
-    for(var i = 0, j = 0, n = alphabet.length; i < n; i++, j++){
-        if(alphabet.charAt(i) !== str.charAt(i)){
-            j--;
-            missing += alphabet.charAt(i);
+    for(var i = 97; i < 123; i++){
+        if(String.fromCharCode(i) === str.charAt(0)){
+            for(var j = 0, n = str.length; j < n; i++, j++){
+                if(String.fromCharCode(i) !== str.charAt(j)){
+                    missing += String.fromCharCode(i);
+                    j--;
+                }
+            }
+            if(missing.length > 0){
+                return missing;
+            } else {
+                return undefined;
+            }
         }
     }
-    if(missing.length === 0){
-        return undefined;
-    } else {
-        return missing;
-    }
+    // var alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    // for(var i = 0, n = alphabet.length; i < n; i++){
+    //     if(alphabet.charAt(i) === str.charAt(0)){
+    //         alphabet = alphabet.slice(i);
+    //         i = 1;
+    //     }
+    //     if(alphabet.charAt(i) === str.charAt(str.length - 1)){
+    //         alphabet = alphabet.replace(alphabet.slice(i), '');
+    //     }
+
+    // }
+    // var missing = '';
+    // for(var i = 0, j = 0, n = alphabet.length; i < n; i++, j++){
+    //     if(alphabet.charAt(i) !== str.charAt(i)){
+    //         j--;
+    //         missing += alphabet.charAt(i);
+    //     }
+    // }
+    // if(missing.length === 0){
+    //     return undefined;
+    // } else {
+    //     return missing;
+    // }
 }
 
 // Function hailCaesar(num)
